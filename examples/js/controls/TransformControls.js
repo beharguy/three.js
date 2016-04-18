@@ -694,15 +694,6 @@
 		domElement.addEventListener( "mousemove", onPointerHover, false );
 		domElement.addEventListener( "touchmove", onPointerHover, false );
 
-		domElement.addEventListener( "mousemove", onPointerMove, false );
-		domElement.addEventListener( "touchmove", onPointerMove, false );
-
-		domElement.addEventListener( "mouseup", onPointerUp, false );
-		domElement.addEventListener( "mouseout", onPointerUp, false );
-		domElement.addEventListener( "touchend", onPointerUp, false );
-		domElement.addEventListener( "touchcancel", onPointerUp, false );
-		domElement.addEventListener( "touchleave", onPointerUp, false );
-
 		this.dispose = function () {
 
 			domElement.removeEventListener( "mousedown", onPointerDown );
@@ -711,14 +702,13 @@
 			domElement.removeEventListener( "mousemove", onPointerHover );
 			domElement.removeEventListener( "touchmove", onPointerHover );
 
-			domElement.removeEventListener( "mousemove", onPointerMove );
-			domElement.removeEventListener( "touchmove", onPointerMove );
-
-			domElement.removeEventListener( "mouseup", onPointerUp );
-			domElement.removeEventListener( "mouseout", onPointerUp );
-			domElement.removeEventListener( "touchend", onPointerUp );
-			domElement.removeEventListener( "touchcancel", onPointerUp );
-			domElement.removeEventListener( "touchleave", onPointerUp );
+			document.removeEventListener( "mousemove", onPointerMove );
+			document.removeEventListener( "touchmove", onPointerMove );
+			
+			document.removeEventListener( "mouseup", onPointerUp );
+			document.removeEventListener( "touchend", onPointerUp );
+			document.removeEventListener( "touchcancel", onPointerUp );
+			document.removeEventListener( "touchleave", onPointerUp );
 
 		};
 
@@ -890,6 +880,14 @@
 				}
 
 			}
+			
+			document.addEventListener( "mousemove", onPointerMove, false );
+			document.addEventListener( "touchmove", onPointerMove, false );
+			
+			document.addEventListener( "mouseup", onPointerUp, false );
+			document.addEventListener( "touchend", onPointerUp, false );
+			document.addEventListener( "touchcancel", onPointerUp, false );
+			document.addEventListener( "touchleave", onPointerUp, false );
 
 			_dragging = true;
 
@@ -1110,6 +1108,14 @@
 				scope.dispatchEvent( mouseUpEvent )
 
 			}
+
+			document.removeEventListener( "mousemove", onPointerMove );
+			document.removeEventListener( "touchmove", onPointerMove );
+			
+			document.removeEventListener( "mouseup", onPointerUp );
+			document.removeEventListener( "touchend", onPointerUp );
+			document.removeEventListener( "touchcancel", onPointerUp );
+			document.removeEventListener( "touchleave", onPointerUp );
 
 			_dragging = false;
 			onPointerHover( event );
